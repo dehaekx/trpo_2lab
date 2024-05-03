@@ -9,6 +9,7 @@ CONFIG += c++17 cmdline
 SOURCES += \
         classunit.cpp \
         main.cpp \
+        methodunit.cpp \
         printoperatorunit.cpp \
         unit.cpp
 
@@ -19,5 +20,6 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 HEADERS += \
     classunit.h \
+    methodunit.h \
     printoperatorunit.h \
     unit.h

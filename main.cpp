@@ -1,6 +1,9 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <iostream>
+#include "classunit.h"
+#include "methodunit.h"
+#include "printoperatorunit.h"
 
 std::string generateProgram() {
     ClassUnit myClass( "MyClass" );
@@ -26,5 +29,6 @@ std::string generateProgram() {
 
 int main() {
     std::cout << generateProgram() << std::endl;
+    generateProgram();
     return 0;
 }

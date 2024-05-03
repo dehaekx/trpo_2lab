@@ -1,6 +1,8 @@
 #ifndef UNIT_H
 #define UNIT_H
 #include <iostream>
+#include <vector>
+#include <memory> // don't know
 using namespace std;
 
 class Unit {
