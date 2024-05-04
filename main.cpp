@@ -29,6 +29,6 @@ std::string generateProgram() {
 
 int main() {
     std::cout << generateProgram() << std::endl;
-    generateProgram();
+    cout << generateProgram() << std::endl;
     return 0;
 }
