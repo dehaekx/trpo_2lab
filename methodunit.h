@@ -1,7 +1,7 @@
 #ifndef METHODUNIT_H
 #define METHODUNIT_H
 #include "unit.h"
-
+#include "cassert"
 class MethodUnit : public Unit
 {
 public:
@@ -17,6 +17,7 @@ public:
 
     void add( const std::shared_ptr< Unit >& unit, Flags /* flags */ = 0 )
     {
+        assert(unit != NULL); // check for no nullprt
         m_body.push_back( unit );
     }
 
@@ -46,11 +47,32 @@ public:
         result += generateShift( level ) + "}\n";
         return result;
     }
-private:
+protected:
     std::string m_name;
     std::string m_returnType;
     Flags m_flags;
     std::vector< std::shared_ptr< Unit > > m_body;
+};
+
+class CMethod: public MethodUnit
+{
+    CMethod( const std::string& name, const std::string& returnType, Flags flags ) :
+        MethodUnit(name, returnType, flags) {}
+    std::string compile( unsigned int level = 0) const;
+};
+
+class JavaMethod: public MethodUnit
+{
+    JavaMethod( const std::string& name, const std::string& returnType, Flags flags ) :
+        MethodUnit(name, returnType, flags) {}
+    std::string compile( unsigned int level = 0) const;
+};
+
+class CSharpMethod: public MethodUnit
+{
+    CSharpMethod( const std::string& name, const std::string& returnType, Flags flags ) :
+        MethodUnit(name, returnType, flags) {}
+    std::string compile( unsigned int level = 0) const;
 };
 
 #endif // METHODUNIT_H
