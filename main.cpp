@@ -29,5 +29,10 @@ std::string generateProgram()
 int main() {
     std::cout << generateProgram() << std::endl;
     cout << generateProgram() << std::endl;
+
+    // CFactory C;
+    // CSharpFactory CSharp;
+    // JavaFactory Java;
+
     return 0;
 }
