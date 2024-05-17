@@ -20,35 +20,32 @@ public:
 
     explicit ClassUnit( const std::string& name );
 
-    void add( const std::shared_ptr< Unit >& unit, Flags flags );
-    std::string compile( unsigned int level = 0 ) const;
-
 protected:
     std::string m_name;
     using Fields = std::vector< std::shared_ptr< Unit > >;
     std::vector< Fields > m_fields;
 };
 
-class CFactory: public ClassUnit
+class CPlusCLass: public ClassUnit
 {
 public:
-    CFactory(const std::string& name):ClassUnit(name){}
+    CPlusCLass(const std::string& name):ClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
 
-class JavaFactory: public ClassUnit
+class JavaClass: public ClassUnit
 {
 public:
-    JavaFactory(const std::string& name):ClassUnit(name){}
+    JavaClass(const std::string& name):ClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
 
-class CSharpFactory: public ClassUnit
+class CSharpClass: public ClassUnit
 {
 public:
-    CSharpFactory(const std::string& name):ClassUnit(name){}
+    CSharpClass(const std::string& name):ClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };

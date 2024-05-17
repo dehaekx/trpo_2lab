@@ -6,22 +6,22 @@ ClassUnit::ClassUnit( const std::string& name ): m_name( name )
 }
 
 
-void CFactory::add( const std::shared_ptr< Unit >& unit, Flags flags )
+void CPlusCLass::add( const std::shared_ptr< Unit >& unit, Flags flags )
 {
     assert(unit != NULL);
 
     int accessModifier = PRIVATE;
-    if( flags < ACCESS_MODIFIERS.size() )
+    if( flags < ACCESS_MODIFIERS.size() ) // 3 модификатора доступа у с++
     {
         accessModifier = flags;
     }
     m_fields[ accessModifier ].push_back( unit );
 }
 
-std::string CFactory::compile( unsigned int level) const
+std::string CPlusCLass::compile( unsigned int level) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
-    for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
+    for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i ) // 3 модификатора доступа
     {
         if( m_fields[ i ].empty() )
         {
@@ -38,21 +38,22 @@ std::string CFactory::compile( unsigned int level) const
     return result;
 }
 
-void JavaFactory::add(const std::shared_ptr<Unit> &unit, Flags flags)
+void JavaClass::add(const std::shared_ptr<Unit> &unit, Flags flags)
 {
     assert(unit != NULL);
 
     int accessModifier = PRIVATE;
-    if( flags < 3 ) {
+    if( flags < 3 )
+    {
         accessModifier = flags;
     }
     m_fields[ accessModifier ].push_back( unit );
 }
 
-std::string JavaFactory::compile( unsigned int level) const
+std::string JavaClass::compile( unsigned int level) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
-    for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
+    for( size_t i = 0; i < 3; ++i )
     {
         if( m_fields[ i ].empty() )
         {
@@ -70,18 +71,19 @@ std::string JavaFactory::compile( unsigned int level) const
 }
 
 
-void CSharpFactory::add(const std::shared_ptr<Unit> &unit, Flags flags)
+void CSharpClass::add(const std::shared_ptr<Unit> &unit, Flags flags)
 {
     assert(unit != NULL);
 
     int accessModifier = PRIVATE;
-    if( flags < 3 ) {
+    if( flags < 3 )
+    {
         accessModifier = flags;
     }
     m_fields[ accessModifier ].push_back( unit );
 }
 
-std::string CSharpFactory::compile( unsigned int level) const
+std::string CSharpClass::compile( unsigned int level) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
     for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
@@ -91,6 +93,7 @@ std::string CSharpFactory::compile( unsigned int level) const
             continue;
         }
         result += ACCESS_MODIFIERS[ i ] + ":\n";
+
         for( const auto& f : m_fields[ i ] )
         {
             result += f->compile( level + 1 );
