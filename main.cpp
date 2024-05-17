@@ -4,35 +4,43 @@
 #include "classunit.h"
 #include "methodunit.h"
 #include "printoperatorunit.h"
+#include "abstactfacroty.h"
 
-std::string generateProgram()
+std::string generateProgram(AbstactFactory & fact)
 {
-    ClassUnit myClass( "MyClass" );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc1", "void", 0 ),
+    //ClassUnit myClass( "MyClass" );
+    auto myClass = fact.CreateClass("MyClass");
+    myClass->add(
+        fact.CreateMethod( "testFunc1", "void", 0 ),
         ClassUnit::PUBLIC
         );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc2", "void", MethodUnit::STATIC ),
+    myClass->add(
+        fact.CreateMethod( "testFunc2", "void", MethodUnit::STATIC ),
         ClassUnit::PRIVATE
         );
-    myClass.add(
-        std::make_shared< MethodUnit >( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST ),
+    myClass->add(
+        fact.CreateMethod( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST ),
         ClassUnit::PUBLIC
         );
-    auto method = std::make_shared< MethodUnit >( "testFunc4", "void", MethodUnit::STATIC );
-    method->add( std::make_shared< PrintOperatorUnit >( R"(Hello, world!\n)" ) );
-    myClass.add( method, ClassUnit::PROTECTED );
-    return myClass.compile();
+    auto method = fact.CreateMethod( "testFunc4", "void", MethodUnit::STATIC );
+
+    method->add( fact.CreatePrintOperator(R"(Hello, world!\n)" ), 0);
+
+    myClass->add(method, ClassUnit::PROTECTED );
+    return myClass->compile();
 }
 
 int main() {
-    std::cout << generateProgram() << std::endl;
-    cout << generateProgram() << std::endl;
+    // std::cout << generateProgram() << std::endl;
+    // cout << generateProgram() << std::endl;
 
-    // CFactory C;
-    // CSharpFactory CSharp;
-    // JavaFactory Java;
+    CPlusFactory CPlusFactory;
+    CSharpFactory CSharpFactory;
+    JavaFactory JavaFactory;
+
+    std::cout << generateProgram(CPlusFactory) << std::endl;
+    std::cout << generateProgram(CSharpFactory) << std::endl;
+    std::cout << generateProgram(JavaFactory) << std::endl;
 
     return 0;
 }
