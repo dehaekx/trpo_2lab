@@ -1,5 +1,5 @@
-#ifndef ABSTACTFACROTY_H
-#define ABSTACTFACROTY_H
+#ifndef ABSTACTFACTORY_H
+#define ABSTACTFACTORY_H
 #include "classunit.h"
 #include "methodunit.h"
 #include "printoperatorunit.h"
@@ -65,4 +65,4 @@ public:
     }
 };
 
-#endif // ABSTACTFACROTY_H
+#endif // ABSTACTFACTORY_H
