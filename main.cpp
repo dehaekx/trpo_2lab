@@ -4,9 +4,9 @@
 #include "classunit.h"
 #include "methodunit.h"
 #include "printoperatorunit.h"
-#include "abstactfacroty.h"
+#include "abstactfactory.h"
 
-std::string generateProgram(AbstactFactory & fact)
+std::string generateProgram(AbstactFactory & fact) //Клиентский код
 {
     //ClassUnit myClass( "MyClass" );
     auto myClass = fact.CreateClass("MyClass");

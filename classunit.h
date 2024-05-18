@@ -4,7 +4,7 @@
 #include "cassert"
 
 
-class ClassUnit : public Unit
+class ClassUnit : public Unit // абстрактный класс для наших классов с++ с# java
 {
 public:
     enum AccessModifier
@@ -13,6 +13,8 @@ public:
         PROTECTED,
         PRIVATE,
         INTERNAL,
+        PROTECTED_INTERNAL,
+        PRIVATE_PROTECTED,
         DEFAULT
     };
     const std::vector< std::string > ACCESS_MODIFIERS = { "public", "protected", "private" };
@@ -25,6 +27,9 @@ protected:
     using Fields = std::vector< std::shared_ptr< Unit > >;
     std::vector< Fields > m_fields;
 };
+
+
+// Конкретные продукты создаются соответствующими Конкретными Фабриками
 
 class CPlusCLass: public ClassUnit
 {
