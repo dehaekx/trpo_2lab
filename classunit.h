@@ -36,7 +36,9 @@ class CPlusCLass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private"};
-    CPlusCLass(const std::string& name):AbstractClassUnit(name){}
+    CPlusCLass(const std::string& name):AbstractClassUnit(name){
+        m_fields.resize(ACCESS_MODIFIERS.size());
+    }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
@@ -46,7 +48,9 @@ class JavaClass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private"};
-    JavaClass(const std::string& name):AbstractClassUnit(name){}
+    JavaClass(const std::string& name):AbstractClassUnit(name){
+        m_fields.resize(ACCESS_MODIFIERS.size());
+    }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
@@ -56,7 +60,9 @@ class CSharpClass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private", "internal", "protected_internal", "private_protected", "file"};
-    CSharpClass(const std::string& name):AbstractClassUnit(name){}
+    CSharpClass(const std::string& name):AbstractClassUnit(name){
+        m_fields.resize(ACCESS_MODIFIERS.size());
+    }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
