@@ -9,7 +9,7 @@ std::string generateProgram(AbstactFactory & Fact) //Клиентский код
     //ClassUnit myClass( "MyClass" );
     auto myClass = Fact.CreateClass("MyClass");
     myClass->add(
-        Fact.CreateMethod( "testFunc1", "void", 0 ),
+        Fact.CreateMethod( "testFunc1", "void", 0),
         AbstractClassUnit::PUBLIC
         );
     myClass->add(
@@ -28,17 +28,17 @@ std::string generateProgram(AbstactFactory & Fact) //Клиентский код
     return myClass->compile();
 }
 
-int main(int argc, char *argv[]) {
+int main()
+{
     // std::cout << generateProgram() << std::endl;
     // cout << generateProgram() << std::endl;
 
     CPlusFactory CPlusFactory;
-    // CSharpFactory CSharpFactory;
-    // JavaFactory JavaFactory;
-    QCoreApplication a(argc, argv);
-    std::cout << generateProgram(CPlusFactory) << std::endl;
-    // std::cout << generateProgram(CSharpFactory) << std::endl;
-    // std::cout << generateProgram(JavaFactory) << std::endl;
+    JavaFactory JavaFactory;
+    CSharpFactory CSharpFactory;
 
-    return a.exec();
+    std::cout << generateProgram(CPlusFactory) << std::endl;
+    std::cout << generateProgram(JavaFactory) << std::endl;
+    std::cout << generateProgram(CSharpFactory) << std::endl;
+    return 0;
 }
