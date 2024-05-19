@@ -1,46 +1,44 @@
 #include <QCoreApplication>
 #include <QDebug>
 #include <iostream>
-#include "classunit.h"
-#include "methodunit.h"
-#include "printoperatorunit.h"
 #include "abstactfactory.h"
 
-std::string generateProgram(AbstactFactory & fact) //Клиентский код
+
+std::string generateProgram(AbstactFactory & Fact) //Клиентский код
 {
     //ClassUnit myClass( "MyClass" );
-    auto myClass = fact.CreateClass("MyClass");
+    auto myClass = Fact.CreateClass("MyClass");
     myClass->add(
-        fact.CreateMethod( "testFunc1", "void", 0 ),
-        ClassUnit::PUBLIC
+        Fact.CreateMethod( "testFunc1", "void", 0 ),
+        AbstractClassUnit::PUBLIC
         );
     myClass->add(
-        fact.CreateMethod( "testFunc2", "void", MethodUnit::STATIC ),
-        ClassUnit::PRIVATE
+        Fact.CreateMethod( "testFunc2", "void", AbstractMethodUnit::STATIC ),
+        AbstractClassUnit::PRIVATE
         );
     myClass->add(
-        fact.CreateMethod( "testFunc3", "void", MethodUnit::VIRTUAL | MethodUnit::CONST ),
-        ClassUnit::PUBLIC
+        Fact.CreateMethod( "testFunc3", "void", AbstractMethodUnit::VIRTUAL | AbstractMethodUnit::CONST ),
+        AbstractClassUnit::PUBLIC
         );
-    auto method = fact.CreateMethod( "testFunc4", "void", MethodUnit::STATIC );
+    auto method = Fact.CreateMethod( "testFunc4", "void", AbstractMethodUnit::STATIC );
 
-    method->add( fact.CreatePrintOperator(R"(Hello, world!\n)" ), 0);
+    method->add( Fact.CreatePrintOperator(R"(Hello, world!\n)"));
+    myClass->add(method, AbstractClassUnit::PROTECTED );
 
-    myClass->add(method, ClassUnit::PROTECTED );
     return myClass->compile();
 }
 
-int main() {
+int main(int argc, char *argv[]) {
     // std::cout << generateProgram() << std::endl;
     // cout << generateProgram() << std::endl;
 
     CPlusFactory CPlusFactory;
-    CSharpFactory CSharpFactory;
-    JavaFactory JavaFactory;
-
+    // CSharpFactory CSharpFactory;
+    // JavaFactory JavaFactory;
+    QCoreApplication a(argc, argv);
     std::cout << generateProgram(CPlusFactory) << std::endl;
-    std::cout << generateProgram(CSharpFactory) << std::endl;
-    std::cout << generateProgram(JavaFactory) << std::endl;
+    // std::cout << generateProgram(CSharpFactory) << std::endl;
+    // std::cout << generateProgram(JavaFactory) << std::endl;
 
-    return 0;
+    return a.exec();
 }

@@ -2,43 +2,43 @@
 #define PRINTOPERATORUNIT_H
 #include "unit.h"
 
-class PrintOperatorUnit : public Unit
+class AbstractPrintOperatorUnit : public Unit
 {
 public:
-    explicit PrintOperatorUnit( const std::string& text ) : m_text( text ) { }
+    explicit AbstractPrintOperatorUnit( const std::string& text ) : m_text( text ) { }
 
 protected:
     std::string m_text;
 };
 
 
-class CPlusPrintOperator : public PrintOperatorUnit
+class CPlusPrintOperator : public AbstractPrintOperatorUnit
 {
 public:
-    explicit CPlusPrintOperator( const std::string& text ) : PrintOperatorUnit( text ) { }
+    explicit CPlusPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
     std::string compile( unsigned int level = 0) const
     {
         return generateShift( level ) + "printf( \"" + m_text + "\" );\n";
     }
 };
 
-class JavaPrintOperator : public PrintOperatorUnit
+class JavaPrintOperator : public AbstractPrintOperatorUnit
 {
 public:
-    explicit JavaPrintOperator( const std::string& text ) : PrintOperatorUnit( text ) { }
-    std::string compile( unsigned int level = 0) const
-    {
-        return generateShift( level ) + "Console.WriteLine( \"" + m_text + "\" );\n";
-    }
-};
-
-class CSharpPrintOperator : public PrintOperatorUnit
-{
-public:
-    explicit CSharpPrintOperator( const std::string& text ) : PrintOperatorUnit( text ) { }
+    explicit JavaPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
     std::string compile( unsigned int level = 0) const
     {
         return generateShift( level ) + "System.out.println( \"" + m_text + "\" );\n";
+    }
+};
+
+class CSharpPrintOperator : public AbstractPrintOperatorUnit
+{
+public:
+    explicit CSharpPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
+    std::string compile( unsigned int level = 0) const
+    {
+        return generateShift( level ) + "Console.WriteLine( \"" + m_text + "\" );\n";
     }
 };
 
