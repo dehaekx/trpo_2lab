@@ -2,9 +2,10 @@
 #define CLASSUNIT_H
 #include "unit.h"
 #include "cassert"
+#include "QDebug"
 
 
-class ClassUnit : public Unit // абстрактный класс для наших классов с++ с# java
+class AbstractClassUnit : public Unit // абстрактный класс для наших классов с++ с# java
 {
 public:
     enum AccessModifier
@@ -15,12 +16,11 @@ public:
         INTERNAL,
         PROTECTED_INTERNAL,
         PRIVATE_PROTECTED,
-        DEFAULT
+        FILE
     };
-    const std::vector< std::string > ACCESS_MODIFIERS = { "public", "protected", "private" };
 public:
 
-    explicit ClassUnit( const std::string& name );
+    explicit AbstractClassUnit( const std::string& name );
 
 protected:
     std::string m_name;
@@ -31,26 +31,32 @@ protected:
 
 // Конкретные продукты создаются соответствующими Конкретными Фабриками
 
-class CPlusCLass: public ClassUnit
+class CPlusCLass: public AbstractClassUnit
 {
 public:
-    CPlusCLass(const std::string& name):ClassUnit(name){}
+    const std::vector< std::string > ACCESS_MODIFIERS =
+        { "public", "protected", "private"};
+    CPlusCLass(const std::string& name):AbstractClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
 
-class JavaClass: public ClassUnit
+class JavaClass: public AbstractClassUnit
 {
 public:
-    JavaClass(const std::string& name):ClassUnit(name){}
+    const std::vector< std::string > ACCESS_MODIFIERS =
+        { "public", "protected", "private"};
+    JavaClass(const std::string& name):AbstractClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
 
-class CSharpClass: public ClassUnit
+class CSharpClass: public AbstractClassUnit
 {
 public:
-    CSharpClass(const std::string& name):ClassUnit(name){}
+    const std::vector< std::string > ACCESS_MODIFIERS =
+        { "public", "protected", "private", "internal", "protected_internal", "private_protected", "file"};
+    CSharpClass(const std::string& name):AbstractClassUnit(name){}
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
     std::string compile( unsigned int level = 0 ) const;
 };
