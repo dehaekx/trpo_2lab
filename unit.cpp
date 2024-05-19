@@ -1,5 +1,3 @@
-#ifdef UNIT_CPP
-#define UNIT_CPP
 #include "unit.h"
 
 std::string Unit::generateShift(unsigned int level) const
@@ -12,5 +10,3 @@ std::string Unit::generateShift(unsigned int level) const
     }
     return result;
 }
-
-#endif
