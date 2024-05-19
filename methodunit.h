@@ -2,6 +2,7 @@
 #define METHODUNIT_H
 #include "unit.h"
 #include "cassert"
+#include "Qdebug"
 class AbstractMethodUnit : public Unit
 {
 public:
@@ -20,7 +21,14 @@ public:
     void add( const std::shared_ptr< Unit >& unit, Flags /* flags */ = 0 )
     {
        // assert(unit != NULL); // check for no nullprt
+        if (unit)
+        {
         m_body.push_back( unit );
+        }
+        else
+        {
+            qDebug() << "UNIT IS NULLPTR" << Qt::endl;
+        }
     }
 
 protected:
