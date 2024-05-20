@@ -9,7 +9,7 @@
 class AbstactFactory
 {
 public:
-    virtual ~AbstactFactory() = default;
+    virtual ~AbstactFactory(){}
     virtual std::shared_ptr<Unit> CreateClass(const std::string& name) = 0;
     virtual std::shared_ptr<Unit> CreateMethod(const std::string& name, const std::string& returnType, unsigned int flags) = 0;
     virtual std::shared_ptr<Unit> CreatePrintOperator(const std::string& text) = 0;

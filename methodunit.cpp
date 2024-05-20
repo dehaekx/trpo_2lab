@@ -31,11 +31,11 @@ std::string JavaMethod::compile(unsigned int level) const // добавить н
     std::string result = generateShift( level );
     if( m_flags & STATIC && m_flags & FINAL )
     {
-        result += "static final ";
+        result += "static final";
     }
     else if( m_flags & STATIC )
     {
-        result += "static ";
+        result += "static";
     }
     else if (m_flags & FINAL)
     {
@@ -47,9 +47,9 @@ std::string JavaMethod::compile(unsigned int level) const // добавить н
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST )
+    if( m_flags & CONST ) // джава не поддерживает const methods
     {
-        result += " const";
+        result += "";
     }
     result += " {\n";
     for( const auto& b : m_body )
@@ -60,7 +60,7 @@ std::string JavaMethod::compile(unsigned int level) const // добавить н
     return result;
 }
 
-std::string CSharpMethod::compile(unsigned int level) const
+std::string CSharpMethod::compile(unsigned int level) const // сделать нормальную реализацию
 {
     std::string result = generateShift( level );
     if( m_flags & STATIC )
@@ -73,9 +73,9 @@ std::string CSharpMethod::compile(unsigned int level) const
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST )
+    if( m_flags & CONST ) // с# не поддерживает const methods
     {
-        result += " const";
+        result += "";
     }
     result += " {\n";
     for( const auto& b : m_body )
