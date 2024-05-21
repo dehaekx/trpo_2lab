@@ -6,19 +6,20 @@
 #include "unit.h"
 #include <memory>
 
-class AbstactFactory
+class AbstactFactory // Абстрактная фабрика объявляет методы создания различных абстрактных продуктов (CreateClass, CreateMethod, CreatePrintOperator)
 {
 public:
-    virtual ~AbstactFactory(){}
+    virtual ~AbstactFactory() = default;
     virtual std::shared_ptr<Unit> CreateClass(const std::string& name) = 0;
     virtual std::shared_ptr<Unit> CreateMethod(const std::string& name, const std::string& returnType, unsigned int flags) = 0;
     virtual std::shared_ptr<Unit> CreatePrintOperator(const std::string& text) = 0;
 };
 
+// Конкретные фабрики реализуют методы абстрактной фабрики, позволяя создавать все продукты определённой вариации
 class CPlusFactory: public AbstactFactory
 {
 public:
-    std::shared_ptr<Unit> CreateClass(const std::string& name) // возвращаем интерйесы
+    std::shared_ptr<Unit> CreateClass(const std::string& name) // возвращаем продукты
     {
         return std::make_shared<CPlusCLass>(name);
     }

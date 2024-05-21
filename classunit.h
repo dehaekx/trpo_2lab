@@ -4,8 +4,7 @@
 #include "cassert"
 #include "QDebug"
 
-
-class AbstractClassUnit : public Unit // абстрактный класс для наших классов с++ с# java
+class AbstractClassUnit : public Unit // абстрактный продукт для наших классов с++ с# java
 {
 public:
     enum AccessModifier
@@ -36,11 +35,12 @@ class CPlusCLass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private"};
-    CPlusCLass(const std::string& name):AbstractClassUnit(name){
+    CPlusCLass(const std::string& name):AbstractClassUnit(name)
+    {
         m_fields.resize(ACCESS_MODIFIERS.size());
     }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
-    std::string compile( unsigned int level = 0 ) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "" ) const;
 };
 
 class JavaClass: public AbstractClassUnit
@@ -48,11 +48,12 @@ class JavaClass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private"};
-    JavaClass(const std::string& name):AbstractClassUnit(name){
+    JavaClass(const std::string& name):AbstractClassUnit(name)
+    {
         m_fields.resize(ACCESS_MODIFIERS.size());
     }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
-    std::string compile( unsigned int level = 0 ) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "")const;
 };
 
 class CSharpClass: public AbstractClassUnit
@@ -60,11 +61,12 @@ class CSharpClass: public AbstractClassUnit
 public:
     const std::vector< std::string > ACCESS_MODIFIERS =
         { "public", "protected", "private", "internal", "protected_internal", "private_protected", "file"};
-    CSharpClass(const std::string& name):AbstractClassUnit(name){
+    CSharpClass(const std::string& name):AbstractClassUnit(name)
+    {
         m_fields.resize(ACCESS_MODIFIERS.size());
     }
     void add(const std::shared_ptr< Unit >& unit, Flags flags);
-    std::string compile( unsigned int level = 0 ) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "") const;
 };
 
 

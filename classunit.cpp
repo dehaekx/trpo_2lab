@@ -23,7 +23,7 @@ void CPlusCLass::add( const std::shared_ptr< Unit >& unit, Flags flags )
     }
 }
 
-std::string CPlusCLass::compile( unsigned int level) const
+std::string CPlusCLass::compile( unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
     for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i ) // 3 модификатора доступа
@@ -63,7 +63,7 @@ void JavaClass::add(const std::shared_ptr<Unit> &unit, Flags flags)
     }
 }
 
-std::string JavaClass::compile( unsigned int level) const
+std::string JavaClass::compile( unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
     for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
@@ -72,10 +72,11 @@ std::string JavaClass::compile( unsigned int level) const
         {
             continue;
         }
-        result += ACCESS_MODIFIERS[ i ] + ":\n";
+
         for( const auto& f : m_fields[ i ] )
         {
-            result += f->compile( level + 1 );
+            access_modifiers = ACCESS_MODIFIERS[i];
+            result += f->compile( level, access_modifiers );
         }
         result += "\n";
     }
@@ -103,7 +104,7 @@ void CSharpClass::add(const std::shared_ptr<Unit> &unit, Flags flags)
     }
 }
 
-std::string CSharpClass::compile( unsigned int level) const
+std::string CSharpClass::compile( unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level ) + "class " + m_name + " {\n";
     for( size_t i = 0; i < ACCESS_MODIFIERS.size(); ++i )
@@ -112,11 +113,11 @@ std::string CSharpClass::compile( unsigned int level) const
         {
             continue;
         }
-        result += ACCESS_MODIFIERS[ i ] + ":\n";
 
         for( const auto& f : m_fields[ i ] )
         {
-            result += f->compile( level + 1 );
+            access_modifiers = ACCESS_MODIFIERS[i];
+            result += f->compile( level + 1, access_modifiers );
         }
         result += "\n";
     }

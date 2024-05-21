@@ -3,7 +3,8 @@
 #include <iostream>
 #include "abstactfactory.h"
 
-
+// Клиентский код работает с фабриками и продуктами только через абстрактные
+// типы: Абстрактная Фабрика и Абстрактный Продукт
 std::string generateProgram(AbstactFactory & Fact) //Клиентский код
 {
     //ClassUnit myClass( "MyClass" );

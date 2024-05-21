@@ -43,7 +43,7 @@ class CPlusMethod: public AbstractMethodUnit
 public:
     CPlusMethod( const std::string& name, const std::string& returnType, Flags flags ) :
         AbstractMethodUnit(name, returnType, flags) {}
-    std::string compile( unsigned int level = 0) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "") const;
 };
 
 class JavaMethod: public AbstractMethodUnit
@@ -51,7 +51,7 @@ class JavaMethod: public AbstractMethodUnit
 public:
     JavaMethod( const std::string& name, const std::string& returnType, Flags flags ) :
         AbstractMethodUnit(name, returnType, flags) {}
-    std::string compile( unsigned int level = 0) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "") const;
 };
 
 class CSharpMethod: public AbstractMethodUnit
@@ -59,7 +59,7 @@ class CSharpMethod: public AbstractMethodUnit
 public:
     CSharpMethod( const std::string& name, const std::string& returnType, Flags flags ) :
         AbstractMethodUnit(name, returnType, flags) {}
-    std::string compile( unsigned int level = 0) const;
+    std::string compile( unsigned int level = 0, std::string access_modifiers = "") const;
 };
 
 #endif // METHODUNIT_H
