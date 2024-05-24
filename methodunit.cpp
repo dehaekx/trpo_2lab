@@ -18,9 +18,9 @@ std::string CPlusMethod::compile(unsigned int level, std::string access_modifier
         result += " const";
     }
     result += " {\n";
-    for( const auto& b : m_body )
+    for( const auto& b : m_body ) // перебираем тело метода
     {
-        result += b->compile( level + 1 );
+        result += b->compile( level + 1, access_modifiers );
     }
     result += generateShift( level ) + "}\n";
     return result;

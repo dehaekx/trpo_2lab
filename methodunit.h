@@ -6,7 +6,7 @@
 class AbstractMethodUnit : public Unit
 {
 public:
-    enum Modifier // ???????????????
+    enum Modifier
     {
         STATIC = 1,
         CONST = 1 << 1,
@@ -34,7 +34,7 @@ public:
 protected:
     std::string m_name;
     std::string m_returnType;
-    Flags m_flags;
+    Flags m_flags; // модификаторы метода
     std::vector< std::shared_ptr< Unit > > m_body;
 };
 
