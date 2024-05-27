@@ -33,9 +33,9 @@ std::string CPlusCLass::compile( unsigned int level, std::string access_modifier
             continue;
         }
         result += ACCESS_MODIFIERS[ i ] + ":\n";
-        for( const auto& f : m_fields[ i ] )
+        for( const auto& f : m_fields[ i ] ) // перебор всех полей в векторе полей для данного модификатора доступа
         {
-            result += f->compile( level + 1 );
+            result += f->compile( level + 1 ); // для каждого поля вызываем compile and save in result
         }
         result += "\n";
     }

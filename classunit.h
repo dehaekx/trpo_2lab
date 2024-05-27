@@ -19,8 +19,7 @@ public:
     };
 public:
 
-    explicit AbstractClassUnit( const std::string& name ); // Ключевое слово `explicit` запрещает неявное преобразование типов
-
+    explicit AbstractClassUnit( const std::string& name ); // Ключевое слово explicit запрещает неявное преобразование типов
 protected:
     std::string m_name;
     using Fields = std::vector< std::shared_ptr< Unit > >; // поля класса
@@ -28,7 +27,6 @@ protected:
 };
 
 
-// Конкретные продукты создаются соответствующими Конкретными Фабриками
 
 class CPlusCLass: public AbstractClassUnit
 {

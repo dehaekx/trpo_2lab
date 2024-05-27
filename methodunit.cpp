@@ -3,7 +3,7 @@
 std::string CPlusMethod::compile(unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level );
-    if( m_flags & STATIC )
+    if( m_flags & STATIC ) // побитовая маска, побитовое сравнение
     {
         result += "static ";
     }
