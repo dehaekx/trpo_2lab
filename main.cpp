@@ -8,21 +8,20 @@
 std::string generateProgram(AbstactFactory & Fact) //Клиентский код
 {
     //ClassUnit myClass( "MyClass" );
-    auto myClass = Fact.CreateClass("MyClass");
+    auto myClass = Fact.CreateClass("MYCLASS");
     myClass->add(
-        Fact.CreateMethod( "testFunc1", "void", 0),
+        Fact.CreateMethod( "testFunction1", "void", 0),
         AbstractClassUnit::PUBLIC
         );
     myClass->add(
-        Fact.CreateMethod( "testFunc2", "void", AbstractMethodUnit::STATIC ),
+        Fact.CreateMethod( "testFunction2", "void", AbstractMethodUnit::STATIC ),
         AbstractClassUnit::PRIVATE
         );
     myClass->add(
-        Fact.CreateMethod( "testFunc3", "void", AbstractMethodUnit::VIRTUAL | AbstractMethodUnit::CONST ),
+        Fact.CreateMethod( "testFunction3", "int", AbstractMethodUnit::VIRTUAL | AbstractMethodUnit::CONST ),
         AbstractClassUnit::PUBLIC
         );
-    auto method = Fact.CreateMethod( "testFunc4", "void", AbstractMethodUnit::STATIC );
-
+    auto method = Fact.CreateMethod( "testFunction4", "void", AbstractMethodUnit::STATIC );
     method->add( Fact.CreatePrintOperator(R"(Hello, world!\n)"));
     myClass->add(method, AbstractClassUnit::PROTECTED );
 
