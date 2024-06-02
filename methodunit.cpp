@@ -3,7 +3,7 @@
 std::string CPlusMethod::compile(unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level );
-    if( m_flags & STATIC ) // побитовая маска, побитовое сравнение
+    if( m_flags & STATIC )
     {
         result += "static ";
     }
@@ -26,7 +26,7 @@ std::string CPlusMethod::compile(unsigned int level, std::string access_modifier
     return result;
 }
 
-std::string JavaMethod::compile(unsigned int level, std::string access_modifiers) const // добавить нормальную реализацию
+std::string JavaMethod::compile(unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level );
     if( m_flags & STATIC && m_flags & FINAL )
@@ -47,7 +47,7 @@ std::string JavaMethod::compile(unsigned int level, std::string access_modifiers
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST ) // джава не поддерживает const methods
+    if( m_flags & CONST )
     {
         result += "";
     }
@@ -60,7 +60,7 @@ std::string JavaMethod::compile(unsigned int level, std::string access_modifiers
     return result;
 }
 
-std::string CSharpMethod::compile(unsigned int level, std::string access_modifiers) const // сделать нормальную реализацию
+std::string CSharpMethod::compile(unsigned int level, std::string access_modifiers) const
 {
     std::string result = generateShift( level );
     if( m_flags & STATIC )
@@ -73,7 +73,7 @@ std::string CSharpMethod::compile(unsigned int level, std::string access_modifie
     }
     result += m_returnType + " ";
     result += m_name + "()";
-    if( m_flags & CONST ) // с# не поддерживает const methods
+    if( m_flags & CONST )
     {
         result += "";
     }
