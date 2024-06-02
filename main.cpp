@@ -7,7 +7,6 @@
 // типы: Абстрактная Фабрика и Абстрактный Продукт
 std::string generateProgram(AbstactFactory & Fact) //Клиентский код
 {
-    //ClassUnit myClass( "MyClass" );
     auto myClass = Fact.CreateClass("MYCLASS");
     myClass->add(
         Fact.CreateMethod( "testFunction1", "void", 0),

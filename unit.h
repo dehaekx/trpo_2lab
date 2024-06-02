@@ -3,7 +3,6 @@
 #include <iostream>
 #include <vector>
 #include <memory> // smart pointers - shared ptr
-using namespace std;
 
 class Unit
 {
