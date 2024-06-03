@@ -18,6 +18,7 @@ public:
     explicit CPlusPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
     std::string compile( unsigned int level = 0, std::string access_modifiers = "") const override
     {
+        Q_UNUSED(access_modifiers);
         return generateShift( level ) + "printf( \"" + m_text + "\" );\n";
     }
 };
@@ -28,6 +29,7 @@ public:
     explicit JavaPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
     std::string compile( unsigned int level = 0, std::string access_modifiers = "") const override
     {
+        Q_UNUSED(access_modifiers);
         return generateShift( level ) + "System.out.println( \"" + m_text + "\" );\n";
     }
 };
@@ -38,6 +40,7 @@ public:
     explicit CSharpPrintOperator( const std::string& text ) : AbstractPrintOperatorUnit( text ) { }
     std::string compile( unsigned int level = 0, std::string access_modifiers = "") const override
     {
+        Q_UNUSED(access_modifiers);
         return generateShift( level ) + "Console.WriteLine( \"" + m_text + "\" );\n";
     }
 };

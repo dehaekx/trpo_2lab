@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <memory> // smart pointers - shared ptr
+#include <QtGlobal>
 
 class Unit
 {
