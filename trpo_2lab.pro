@@ -9,6 +9,9 @@ CONFIG += c++17 cmdline
 SOURCES += \
         abstactfactory.cpp \
         classunit.cpp \
+        cplusclass.cpp \
+        csharpclass.cpp \
+        javaclass.cpp \
         main.cpp \
         methodunit.cpp \
         printoperatorunit.cpp \
@@ -22,6 +25,9 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 HEADERS += \
     abstactfactory.h \
     classunit.h \
+    cplusclass.h \
+    csharpclass.h \
+    javaclass.h \
     methodunit.h \
     printoperatorunit.h \
     unit.h
