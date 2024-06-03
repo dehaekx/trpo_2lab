@@ -1,6 +1,6 @@
 #ifndef ABSTACTFACTORY_H
 #define ABSTACTFACTORY_H
-#include "classunit.h"
+
 #include "cplusclass.h"
 #include "javaclass.h"
 #include "csharpclass.h"
